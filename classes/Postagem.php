@@ -50,22 +50,20 @@ public function meusPost($id_usuario){
     $query = $this->pdo->prepare("SELECT * FROM postagens WHERE id_usuario = '{$id_usuario}'");
     $query->execute();
     $resultados = $query->fetchAll(PDO::FETCH_ASSOC);
-    
-    $output = '';
+    $output = '<tr>';
     if (count($resultados)) {
         foreach($resultados as $resultado){
-
-            $output .=  "<form method='post' action='../actions/postagem/Update.php'>
-             
-                <input type='text' name='titulo'  value='{$resultado['titulo']}'>
-                <input type='text' name='postagens' value='{$resultado['postagens']}'>
-                <button type='submit' name='editar' value='{$resultado['id']}'>Editar</button>
-                </form>";
+            $output .=  "<td><form method='post' action='../actions/postagem/Update.php'>
+            <input type='hidden' name='id' value='{$resultado['id']}'>
+            <input type='text' name='titulo'  value='{$resultado['titulo']}'>
+            <input type='text' name='postagens' value='{$resultado['postagens']}'>
+            <button type='text'>Editar</button>
+            </form></td>";
             $output .= "<p><a href='../actions/postagem/Delete.php?id=".$resultado['id']."'>Excluir</a></p>"; 
         }
     }
-
-    return $output; 
+    
+    return $output.'</tr>'; 
 }
 
 public function apagar($id){
@@ -86,7 +84,6 @@ $query = $this->pdo->prepare("UPDATE postagens SET postagens = '{$this->postagem
 WHERE id = '{$id}' ");
 $query->execute();
 
-
 $resultado = $query->fetch(PDO::FETCH_ASSOC);
 if ($resultado) {
     return $resultado;
@@ -95,18 +92,8 @@ return null;
 }
 
 }
-?>
 
 
-<script>
-const input_titulo = document.getElementById('titulo');
-const input_postagem = document.getElementById('postagens');
-
-input_titulo.addEventListener("keyup");
-input_postagem.addEventListener("keyup");
-
-
-</script>
 
 
  

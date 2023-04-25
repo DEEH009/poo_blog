@@ -29,7 +29,6 @@ include (__DIR__ . "/components/header.php");
 
   <h3>Suas Postagens</h3>
 
-  <form>
   <?php
   $postagens = new  Postagem();
 
