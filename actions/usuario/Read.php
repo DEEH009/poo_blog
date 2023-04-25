@@ -11,7 +11,7 @@ $usuarios->senha = $_POST['senha'];
 
 $resultado = $usuarios->logar();
 if (!$resultado) {
-    header("location: ../../view/Registrar.php");
+    header("location: ../../view/registrar.php");
     exit;    
 }
 $_SESSION['usuario'] =  $resultado;

@@ -59,11 +59,12 @@ public function meusPost($id_usuario){
              
                 <input type='text' name='titulo'  value='{$resultado['titulo']}'>
                 <input type='text' name='postagens' value='{$resultado['postagens']}'>
-                <button type='submit'>Editar</button>
+                <button type='submit' name='editar' value='{$resultado['id']}'>Editar</button>
                 </form>";
             $output .= "<p><a href='../actions/postagem/Delete.php?id=".$resultado['id']."'>Excluir</a></p>"; 
         }
     }
+
     return $output; 
 }
 
@@ -80,7 +81,7 @@ public function apagar($id){
 }
 
 public function editar($id){
-    var_dump($this->postagem);exit;
+   
 $query = $this->pdo->prepare("UPDATE postagens SET postagens = '{$this->postagem}' ,  titulo = '{$this->titulo}'
 WHERE id = '{$id}' ");
 $query->execute();
@@ -94,6 +95,18 @@ return null;
 }
 
 }
+?>
+
+
+<script>
+const input_titulo = document.getElementById('titulo');
+const input_postagem = document.getElementById('postagens');
+
+input_titulo.addEventListener("keyup");
+input_postagem.addEventListener("keyup");
+
+
+</script>
 
 
  

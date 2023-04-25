@@ -2,7 +2,7 @@
 include_once '../../classes/Load.php';
 
 
-
+$id = $_GET["id"];
 
 
 $postagem = new Postagem();
